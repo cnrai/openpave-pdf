@@ -1,0 +1,6 @@
+node_modules/
+*.pdf
+*.html
+.tmp-*
+tmp/
+.DS_Store

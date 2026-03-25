@@ -1,0 +1,109 @@
+# OpenPAVE PDF Skill
+# Generate branded PDF proposals and documents from JSON content
+
+name: pdf
+version: 1.1.0
+description: Generate branded PDF documents with Dark (PAVE Cobalt) and Light (C&R Professional) themes from structured JSON content
+
+author:
+  name: cnrai
+  url: https://github.com/cnrai
+
+license: MIT
+homepage: https://github.com/cnrai/openpave-pdf
+repository: cnrai/openpave-pdf
+
+pattern: sandbox
+entrypoint: index.js
+
+commands:
+  - name: dark
+    description: PAVE Dark Theme — cobalt background, lime-green accents
+    subcommands:
+      - name: generate
+        description: Generate a PDF from content JSON
+        options:
+          - -i, --input <file>
+          - -o, --output <file>
+          - --cnr-logo <file>
+          - --pave-logo <file>
+          - --client-logo <file>
+          - --open
+      - name: preview
+        description: Generate HTML preview
+        options:
+          - -i, --input <file>
+          - -o, --output <file>
+          - --cnr-logo <file>
+          - --pave-logo <file>
+          - --client-logo <file>
+      - name: sample
+        description: Output sample content JSON
+        options:
+          - -o, --output <file>
+
+  - name: light
+    description: C&R Light Theme — white background, configurable accent
+    subcommands:
+      - name: generate
+        description: Generate a PDF from content JSON
+        options:
+          - -i, --input <file>
+          - -o, --output <file>
+          - --logo1 <file>
+          - --logo2 <file>
+          - --accent <color>
+          - --open
+      - name: preview
+        description: Generate HTML preview
+        options:
+          - -i, --input <file>
+          - -o, --output <file>
+          - --accent <color>
+      - name: sample
+        description: Output sample content JSON
+        options:
+          - -o, --output <file>
+
+tokens: {}
+
+permissions:
+  fs.read:
+    - "*"
+  fs.write:
+    - "tmp/*"
+    - /tmp/*
+  network: []
+  modules:
+    - fs
+    - path
+  system:
+    - node
+    - npx
+    - puppeteer
+    - mkdir
+    - stat
+    - open
+    - rm
+
+platforms:
+  - darwin
+  - linux
+  - win32
+
+engines:
+  node: ">=16.0.0"
+
+keywords:
+  - pdf
+  - proposal
+  - document
+  - branded
+  - puppeteer
+  - dark-theme
+  - light-theme
+  - cobalt
+  - pave
+
+category: productivity
+icon: "\U0001F4C4"
