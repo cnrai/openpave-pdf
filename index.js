@@ -254,10 +254,13 @@ function esc(text) {
 function inline(text) {
   if (!text) return '';
   return String(text)
+    // Preserve explicit line breaks: <br>, <br/>, <br />
+    .replace(/<br\s*\/?>/gi, '{{BR}}')
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
-    .replace(/`(.+?)`/g, '<code>$1</code>');
+    .replace(/`(.+?)`/g, '<code>$1</code>')
+    .replace(/\{\{BR\}\}/g, '<br>');
 }
 
 // ===================================================================
